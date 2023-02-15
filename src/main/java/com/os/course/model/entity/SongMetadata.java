@@ -20,6 +20,5 @@ public class SongMetadata implements BaseEntity {
     private String album;
     private String length;
     private Long resourceId;
-    private Integer year;
     private boolean deleted;
 }
