@@ -24,6 +24,7 @@ public class SongE2ESteps {
     @Given("The user opened a browser and passed {string}")
     public void app_base_url(String baseUrl) {
         System.setProperty("webdriver.chrome.driver","/Users/Siarhei_Viarbouski/microservices/Song_Service/src/test/resources/chromedriver");
+        System.setProperty("webdriver.http.factory", "jdk-http-client");
         driver = new ChromeDriver();
         log.info("Application URL -> " + baseUrl);
         URL = baseUrl;
