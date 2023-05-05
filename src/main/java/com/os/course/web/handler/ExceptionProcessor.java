@@ -2,6 +2,7 @@ package com.os.course.web.handler;
 
 import com.os.course.model.dto.ErrorDto;
 import com.os.course.model.exception.FileNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.ExceptionHandler;
@@ -9,6 +10,7 @@ import org.springframework.web.bind.annotation.RestControllerAdvice;
 import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExceptionHandler;
 
 @RestControllerAdvice
+@Slf4j
 public class ExceptionProcessor extends ResponseEntityExceptionHandler {
     private static final int INCORRECT_PARAMETER_VALUE_CODE = 400;
     private static final int RESOURCE_NOT_FOUND_CODE = 404;
@@ -18,6 +20,7 @@ public class ExceptionProcessor extends ResponseEntityExceptionHandler {
 
     @ExceptionHandler(value = FileNotFoundException.class)
     public ResponseEntity<ErrorDto> handleResourceNotFoundException(FileNotFoundException exception) {
+        log.error(exception.getMessage());
         return new ResponseEntity<>(new ErrorDto(exception.getMessage(), RESOURCE_NOT_FOUND_CODE), HttpStatus.NOT_FOUND);
     }
 }
